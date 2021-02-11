@@ -8,7 +8,9 @@ class NoteContainer extends Component {
 
   state = {
     notes: [],
-    contentNote: []
+    showNote: [],
+    somethingnotes: [],
+    editNotes: false
   }
   
   
@@ -19,12 +21,35 @@ class NoteContainer extends Component {
   }
 
   showContent =(props)=>{
-    this.setState({contentNote: props})
+    this.setState({showNote: props})
   }
 
   truncate(string,){
     // debugger
     return string.slice(0,5)+"..."
+  }
+
+  beginEdit =()=>{
+
+    this.setState({editNotes: true})
+  }
+
+  changeNote=(event)=>{
+    let something = this.state.showNote
+    // something.title  ???
+    // let test = event.target.value
+    // console.log(this.state.showNote.title)
+    //event.target.name
+    let change = event.target.name
+
+    let changeinfo = event.target.value
+
+    something[change] =changeinfo
+
+    // debugger
+    this.setState({
+      showNote: something
+    })
   }
 
   render() {
@@ -36,7 +61,11 @@ class NoteContainer extends Component {
           notelist={this.state.notes} 
           clickFunction={this.showContent}
           shorten={this.truncate} />
-          <Content note={this.state.contentNote} />
+          <Content 
+          note={this.state.showNote} 
+          true={this.state.editNotes}
+          startEdit={this.beginEdit} 
+          change={this.changeNote}/>
         </div>
       </Fragment>
     );
