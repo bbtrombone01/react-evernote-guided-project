@@ -22,6 +22,11 @@ class NoteContainer extends Component {
     this.setState({contentNote: props})
   }
 
+  truncate(string,){
+    // debugger
+    return string.slice(0,5)+"..."
+  }
+
   render() {
     return (
       <Fragment>
@@ -29,7 +34,8 @@ class NoteContainer extends Component {
         <div className='container'>
           <Sidebar 
           notelist={this.state.notes} 
-          clickFunction={this.showContent} />
+          clickFunction={this.showContent}
+          shorten={this.truncate} />
           <Content note={this.state.contentNote} />
         </div>
       </Fragment>

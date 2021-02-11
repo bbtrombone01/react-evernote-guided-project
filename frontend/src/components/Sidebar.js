@@ -11,7 +11,8 @@ class Sidebar extends Component {
       <div className='master-detail-element sidebar'>
         <NoteList 
         NoteList={this.props.notelist}
-        clickFunction={this.props.clickFunction}/>
+        clickFunction={this.props.clickFunction}
+        shorten={this.props.shorten}/>
         <button>New</button>
       </div>
     );

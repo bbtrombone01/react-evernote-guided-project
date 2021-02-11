@@ -4,7 +4,7 @@ const NoteItem = (props) => (
   
   <li onClick={ () =>props.click(props.item)}>
     <h2>{props.item.title}</h2>
-    <p>{props.item.body}</p>
+    <p>{props.shorten(props.item.body)}</p>
   </li>
 );
 
