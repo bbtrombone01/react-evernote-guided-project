@@ -16,9 +16,14 @@ class Content extends Component {
 
   renderContent = () => {
     if (this.props.true == true) {
-      return <NoteEditor  note={this.props.note} change={this.props.change}/>;
+      return <NoteEditor  
+      note={this.props.note} 
+      change={this.props.change}
+      save={this.props.save}/>;
     } else if (this.props.note.body) {
-      return <NoteViewer  info={this.props.note} startEdit={this.props.startEdit}/>;
+      return <NoteViewer  
+      info={this.props.note} 
+      startEdit={this.props.startEdit}/>;
     } else {
       return <Instructions />;
     }

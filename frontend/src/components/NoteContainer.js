@@ -36,26 +36,43 @@ class NoteContainer extends Component {
 
   changeNote=(event)=>{
     let something = this.state.showNote
-    // something.title  ???
-    // let test = event.target.value
-    // console.log(this.state.showNote.title)
-    //event.target.name
     let change = event.target.name
-
     let changeinfo = event.target.value
-
+   
     something[change] =changeinfo
-
-    // debugger
     this.setState({
       showNote: something
     })
   }
 
+  saveEdit=(event)=>{
+    let testing = this.state.showNote
+    event.preventDefault()
+    fetch(`http://localhost:3000/api/v1/notes/${testing.id}`,{
+      method: 'PATCH',
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(testing)
+    })
+    .then(res => res.json())
+    .then(console.log)
+    debugger
+  }
+
+  testStuff =(event)=>{
+    let holding = this.state.notes
+
+    ///holding.filter( element => console.log( element.title.includes(event.target.value)))
+    // debugger
+  }
+
+
+
   render() {
     return (
       <Fragment>
-        <Search />
+        <Search 
+        notes={this.state.notes} 
+        search={this.testStuff}/>
         <div className='container'>
           <Sidebar 
           notelist={this.state.notes} 
@@ -65,7 +82,8 @@ class NoteContainer extends Component {
           note={this.state.showNote} 
           true={this.state.editNotes}
           startEdit={this.beginEdit} 
-          change={this.changeNote}/>
+          change={this.changeNote}
+          save={this.saveEdit}/>
         </div>
       </Fragment>
     );
