@@ -3,6 +3,9 @@ import Header from './Header';
 import NoteContainer from './NoteContainer';
 
 class App extends Component {
+
+
+
   render() {
     return (
       <div className="app">
