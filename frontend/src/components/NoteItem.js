@@ -1,9 +1,10 @@
 import React from 'react';
 
 const NoteItem = (props) => (
-  <li>
-    <h2>props.ite</h2>
-    <p>Caption...</p>
+  
+  <li onClick={ () =>props.click(props.item)}>
+    <h2>{props.item.title}</h2>
+    <p>{props.item.body}</p>
   </li>
 );
 

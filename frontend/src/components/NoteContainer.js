@@ -7,7 +7,8 @@ class NoteContainer extends Component {
 
 
   state = {
-    notes: []
+    notes: [],
+    contentNote: []
   }
   
   
@@ -17,14 +18,19 @@ class NoteContainer extends Component {
     .then( data => this.setState({notes:data }))
   }
 
+  showContent =(props)=>{
+    this.setState({contentNote: props})
+  }
 
   render() {
     return (
       <Fragment>
         <Search />
         <div className='container'>
-          <Sidebar notelist={this.state.notes} />
-          <Content />
+          <Sidebar 
+          notelist={this.state.notes} 
+          clickFunction={this.showContent} />
+          <Content note={this.state.contentNote} />
         </div>
       </Fragment>
     );
