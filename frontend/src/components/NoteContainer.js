@@ -55,16 +55,14 @@ class NoteContainer extends Component {
 
   newNote=()=>{
     this.setState({editNotes: false})
+    // debugger
     let defaultNote = {
       title: "Default",
       body: "value",
-      id: this.state.note+1,
-      user: {
-        id: 1,
-        name: "bbtrombonw"
-      }
+      id: this.state.notes.length+1,
+      user: "bbtrombonw"
     }
-
+      // debugger
     let words = this.state.notes
     console.log(this.state.notes)
     words.push(defaultNote)
