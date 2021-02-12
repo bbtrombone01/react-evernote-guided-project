@@ -13,7 +13,7 @@ class Sidebar extends Component {
         NoteList={this.props.notelist}
         clickFunction={this.props.clickFunction}
         shorten={this.props.shorten}/>
-        <button>New</button>
+        <button onClick={this.props.save}> New</button>
       </div>
     );
   }

@@ -10,7 +10,7 @@ class NoteContainer extends Component {
     notes: [],
     showNote: [],
     somethingnotes: [],
-    editNotes: false
+    editNotes: false, 
   }
   
   
@@ -46,6 +46,10 @@ class NoteContainer extends Component {
   }
 
   saveEdit=(event)=>{
+
+    if(this.state.showNote.length < 1){
+      this.postNote(event)
+    }
     let testing = this.state.showNote
     event.preventDefault()
     fetch(`http://localhost:3000/api/v1/notes/${testing.id}`,{
@@ -55,7 +59,12 @@ class NoteContainer extends Component {
     })
     .then(res => res.json())
     .then(console.log)
-    debugger
+    // debugger
+  }
+
+  newNote=()=>{
+    this.setState({editNotes: true})
+    // debugger
   }
 
   testStuff =(event)=>{
@@ -65,6 +74,20 @@ class NoteContainer extends Component {
     // debugger
   }
 
+
+  postNote =(event)=>{
+    let testing ={}
+    testing["title"] = event.target[0].value
+    testing["body"] = event.target[1].value
+    // debugger
+    fetch('http://localhost:3000/api/v1/notes',{
+      method: `POST`,
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(testing)
+    })
+    .then(res => res.json())
+    .then(this.componentDidMount())
+  }
 
 
   render() {
@@ -77,7 +100,8 @@ class NoteContainer extends Component {
           <Sidebar 
           notelist={this.state.notes} 
           clickFunction={this.showContent}
-          shorten={this.truncate} />
+          shorten={this.truncate} 
+          save={this.newNote}/>
           <Content 
           note={this.state.showNote} 
           true={this.state.editNotes}
