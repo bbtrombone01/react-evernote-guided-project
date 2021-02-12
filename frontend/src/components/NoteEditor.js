@@ -12,35 +12,8 @@ class NoteEditor extends Component {
       [event.target.name]: event.target.value,
     }
     this.setState({note})
-    // console.log(note)
   }
-
-
-  // saveEdit=(event)=>{
-  // //  console.log(this.props)
-
-  //   event.preventDefault()
-  //   console.log(this.props)
-  //   let testing = this.state
-  //   testing["id"] = this.props.note.id
-  //   testing["user"] = 
-  //   debugger
-  //   fetch(`http://localhost:3000/api/v1/notes/${this.props.note.id}`,{
-  //     method: 'PATCH',
-  //     headers: {"Content-Type": "application/json"},
-  //     body: JSON.stringify(testing)
-  //   })
-  //   .then(res => res.json())
-  //   .then(console.log("abt"))
-  //   // debugger
-  // }
-
-  // cancleChange(){
-
-
-  //   this.setState({note: this.props.note})
-  // }
-
+  
   render() {
     return (
       <form 

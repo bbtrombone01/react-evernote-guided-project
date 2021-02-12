@@ -25,7 +25,6 @@ class NoteContainer extends Component {
   }
 
   truncate(string,){
-    // debugger
     return string.slice(0,5)+"..."
   }
 
@@ -36,13 +35,10 @@ class NoteContainer extends Component {
 
 
   saveEdit=(pros,event)=>{
-    // debugger
-    let testing = this.state.showNote
     event.preventDefault()
+    let testing = this.state.showNote
     testing.title = pros.note.title
     testing.body = pros.note.body
-    console.log(this.state.showNote)
-    // debugger
     fetch(`http://localhost:3000/api/v1/notes/${testing.id}`,{
       method: 'PATCH',
       headers: {"Content-Type": "application/json"},
@@ -50,23 +46,18 @@ class NoteContainer extends Component {
     })
     .then(res => res.json())
     .then(this.setState({showNote: testing}))
-    // debugger
   }
 
   newNote=()=>{
     this.setState({editNotes: false})
-    // debugger
     let defaultNote = {
       title: "Default",
       body: "value",
       id: this.state.notes.length+1,
       user: "bbtrombonw"
     }
-      // debugger
     let words = this.state.notes
-    console.log(this.state.notes)
     words.push(defaultNote)
-    // debugger
     fetch('http://localhost:3000/api/v1/notes',{
       method: `POST`,
       headers: {"Content-Type": "application/json"},
@@ -74,8 +65,6 @@ class NoteContainer extends Component {
     })
     .then(res => res.json())
     .then(this.setState({notes: words}))
-
-    // debugger
   }
 
   testStuff =(event)=>{
@@ -83,19 +72,13 @@ class NoteContainer extends Component {
     let newArray = []
     holding.filter( element => element.title.toLowerCase().includes(event.target.value.toLowerCase())? newArray.push(element) : null )
     this.setState({somethingnotes: newArray})
-    // console.log(event.target.value)
-
-    ///holding.filter( element => console.log( element.title.includes(event.target.value)))
-    // debugger
   }
 
 
   postNote =(event)=>{
-
     let testing ={}
     testing["title"] = event.target[0].value
     testing["body"] = event.target[1].value
-    // debugger
     fetch('http://localhost:3000/api/v1/notes',{
       method: `POST`,
       headers: {"Content-Type": "application/json"},
