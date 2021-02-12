@@ -58,18 +58,24 @@ class NoteContainer extends Component {
     let defaultNote = {
       title: "Default",
       body: "value",
+      id: this.state.note+1,
       user: {
         id: 1,
         name: "bbtrombonw"
       }
     }
+
+    let words = this.state.notes
+    console.log(this.state.notes)
+    words.push(defaultNote)
+    // debugger
     fetch('http://localhost:3000/api/v1/notes',{
       method: `POST`,
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(defaultNote)
     })
     .then(res => res.json())
-    .then(this.componentDidMount())
+    .then(this.setState({notes: words}))
 
     // debugger
   }
@@ -87,6 +93,7 @@ class NoteContainer extends Component {
 
 
   postNote =(event)=>{
+
     let testing ={}
     testing["title"] = event.target[0].value
     testing["body"] = event.target[1].value
