@@ -36,19 +36,19 @@ class NoteContainer extends Component {
 
   saveEdit=(pros,event)=>{
     event.preventDefault()
-    let testing = this.state.showNote
-    testing.title = pros.note.title
-    testing.body = pros.note.body
-    fetch(`http://localhost:3000/api/v1/notes/${testing.id}`,{
+    let newShowNote = this.state.showNote
+    newShowNote.title = pros.note.title
+    newShowNote.body = pros.note.body
+    fetch(`http://localhost:3000/api/v1/notes/${newShowNote.id}`,{
       method: 'PATCH',
       headers: {"Content-Type": "application/json"},
-      body: JSON.stringify(testing)
+      body: JSON.stringify(newShowNote)
     })
     .then(res => res.json())
-    .then(this.setState({showNote: testing}))
+    .then(this.setState({showNote: newShowNote}))
   }
 
-  newNote=()=>{
+  newNotes =()=>{
     this.setState({editNotes: false})
     let defaultNote = {
       title: "Default",
@@ -56,22 +56,22 @@ class NoteContainer extends Component {
       id: this.state.notes.length+1,
       user: "bbtrombonw"
     }
-    let words = this.state.notes
-    words.push(defaultNote)
+    let newNote = this.state.notes
+    newNote.push(defaultNote)
     fetch('http://localhost:3000/api/v1/notes',{
       method: `POST`,
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(defaultNote)
     })
     .then(res => res.json())
-    .then(this.setState({notes: words}))
+    .then(this.setState({notes: newNote}))
   }
 
-  testStuff =(event)=>{
-    let holding = this.state.notes
-    let newArray = []
-    holding.filter( element => element.title.toLowerCase().includes(event.target.value.toLowerCase())? newArray.push(element) : null )
-    this.setState({somethingnotes: newArray})
+  filerNotes =(event)=>{
+    let allnotes = this.state.notes
+    let newNoteArray = []
+    allnotes.filter( element => element.title.toLowerCase().includes(event.target.value.toLowerCase())? newNoteArray.push(element) : null )
+    this.setState({somethingnotes: newNoteArray})
   }
 
 
@@ -99,13 +99,13 @@ class NoteContainer extends Component {
       <Fragment>
         <Search 
         notes={this.state.notes} 
-        search={this.testStuff}/>
+        search={this.filerNotes}/>
         <div className='container'>
           <Sidebar 
           notelist={this.state.somethingnotes} 
           clickFunction={this.showContent}
           shorten={this.truncate} 
-          save={this.newNote}/>
+          save={this.newNotes}/>
           <Content 
           note={this.state.showNote} 
           true={this.state.editNotes}
