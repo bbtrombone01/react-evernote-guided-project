@@ -29,7 +29,6 @@ class NoteContainer extends Component {
   }
 
   beginEdit =()=>{
-
     this.setState({editNotes: true})
   }
 
@@ -54,9 +53,10 @@ class NoteContainer extends Component {
       title: "Default",
       body: "value",
       id: this.state.notes.length+1,
-      user: "bbtrombonw"
+      user_id: 1
     }
-    let newNote = this.state.notes
+
+    let newNote = this.state.somethingnotes
     newNote.push(defaultNote)
     fetch('http://localhost:3000/api/v1/notes',{
       method: `POST`,
@@ -64,7 +64,7 @@ class NoteContainer extends Component {
       body: JSON.stringify(defaultNote)
     })
     .then(res => res.json())
-    .then(this.setState({notes: newNote}))
+    .then(this.setState({somethingnotes: newNote}))
   }
 
   filerNotes =(event)=>{
@@ -74,20 +74,6 @@ class NoteContainer extends Component {
     this.setState({somethingnotes: newNoteArray})
   }
 
-
-  postNote =(event)=>{
-    let testing ={}
-    testing["title"] = event.target[0].value
-    testing["body"] = event.target[1].value
-    fetch('http://localhost:3000/api/v1/notes',{
-      method: `POST`,
-      headers: {"Content-Type": "application/json"},
-      body: JSON.stringify(testing)
-    })
-    .then(res => res.json())
-    .then(this.componentDidMount())
-    this.setState({editNotes: false})
-  }
 
   cancleButton=()=>{
     this.setState({editNotes: false})

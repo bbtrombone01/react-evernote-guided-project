@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Header from './Header';
 import NoteContainer from './NoteContainer';
 
-class App extends Component {
+class EverNote extends Component {
 
 
 
@@ -15,5 +15,4 @@ class App extends Component {
     );
   }
 }
-
-export default App;
+export default EverNote;
