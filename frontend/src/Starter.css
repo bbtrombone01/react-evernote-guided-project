@@ -1,8 +1,7 @@
 #sad_Robot{
-    width: 100%;
-    height: 100%;
-    background-color: aqua;
-    background-image: url(https://static.wikia.nocookie.net/rickandmorty/images/6/67/Butter_Robot_Picture.png/revision/latest?cb=20171106225602);
+    width: 530px;
+    height: 590px;
+    background-image: url(https://i.pinimg.com/originals/07/dc/94/07dc94be9c06e4d7a55bd9769a1f7561.jpg);
     background-size: contain;
     background-repeat: no-repeat;
 }

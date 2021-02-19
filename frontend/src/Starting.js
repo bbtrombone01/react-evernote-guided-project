@@ -12,10 +12,8 @@ class Starting extends React.Component{
 
         return(
             <div>
-                <div id="sad_Robot">
-
-                </div>
-                <img scr="https://static.wikia.nocookie.net/rickandmorty/images/6/67/Butter_Robot_Picture.png/revision/latest?cb=20171106225602" alt="sad robot" />
+                <img id="sad_Robot"></img>
+                <p> to show off i can route </p>
             </div>
         )
     }
